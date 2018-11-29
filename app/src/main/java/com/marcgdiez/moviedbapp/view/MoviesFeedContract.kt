@@ -6,6 +6,6 @@ interface MoviesFeedContract {
     }
 
     interface Presenter {
-
+        fun onViewReady()
     }
 }

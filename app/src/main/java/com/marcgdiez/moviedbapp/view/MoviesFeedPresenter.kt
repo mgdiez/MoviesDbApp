@@ -1,5 +1,7 @@
 package com.marcgdiez.moviedbapp.view
 
-class MoviesFeedPresenter : MoviesFeedContract.Presenter {
+class MoviesFeedPresenter(private val view: MoviesFeedContract.View) : MoviesFeedContract.Presenter {
+    override fun onViewReady() {
 
+    }
 }
