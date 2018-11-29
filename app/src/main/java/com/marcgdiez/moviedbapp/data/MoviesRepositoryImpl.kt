@@ -1,11 +1,11 @@
 package com.marcgdiez.moviedbapp.data
 
-import com.marcgdiez.moviedbapp.domain.Movie
 import com.marcgdiez.moviedbapp.domain.MoviesRepository
+import com.marcgdiez.moviedbapp.domain.bo.GetMoviesResponse
 import io.reactivex.Single
 
-class MoviesRepositoryImpl : MoviesRepository {
-    override fun getMovies(page: Int): Single<List<Movie>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+class MoviesRepositoryImpl(private val moviesApi: MoviesApi, private val moviesMapper: MoviesMapper) :
+    MoviesRepository {
+    override fun getMovies(page: Int): Single<GetMoviesResponse> =
+        moviesApi.getMoviesList(NetworkConfig.API_KEY, NetworkConfig.API_LAN, page).map { moviesMapper.map(it) }
 }
