@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.View
 import android.view.WindowManager
 import com.marcgdiez.moviedbapp.Navigator
 import com.marcgdiez.moviedbapp.R
@@ -24,7 +25,6 @@ class MoviesFeedActivity : AppCompatActivity(), MoviesFeedContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movies_feed)
-        initStatusBar()
         initViews()
         AndroidInjection.inject(this)
         presenter.onViewReady()
@@ -44,10 +44,6 @@ class MoviesFeedActivity : AppCompatActivity(), MoviesFeedContract.View {
             })
             setHasFixedSize(true)
         }
-    }
-
-    private fun initStatusBar() {
-        window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
     }
 
     override fun showMovies(movies: List<Movie>) {

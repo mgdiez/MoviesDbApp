@@ -6,10 +6,10 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.WindowManager
-import android.widget.Toast
 import com.marcgdiez.moviedbapp.Navigator
 import com.marcgdiez.moviedbapp.R
 import com.marcgdiez.moviedbapp.domain.bo.Movie
+import com.marcgdiez.moviedbapp.extensions.hide
 import com.marcgdiez.moviedbapp.extensions.loadWithTranstion
 import com.marcgdiez.moviedbapp.extensions.show
 import dagger.android.AndroidInjection
@@ -78,7 +78,8 @@ class MovieDetailActivity : AppCompatActivity(), MovieDetailContract.View {
     }
 
     override fun hideRecommendations() {
-        Toast.makeText(this, "error", Toast.LENGTH_SHORT).show()
+        recommendationTitle.hide()
+        recyclerView.hide()
     }
 
     override fun showRecommendations(movies: List<Movie>) {
