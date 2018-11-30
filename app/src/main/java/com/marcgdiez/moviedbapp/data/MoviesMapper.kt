@@ -14,11 +14,15 @@ class MoviesMapper {
     private fun moviesDtoToBo(getMoviesResponse: GetMoviesResponseDto): List<Movie> =
         getMoviesResponse.results.map {
             Movie(
-                generateImageUrl(it.backdrop_path), it.first_air_date,
+                generateBackdropImageUrl(it.backdrop_path), it.first_air_date,
                 it.genre_ids, it.id, it.name, it.origin_country, it.original_language, it.original_name, it.overview,
-                it.popularity, generateImageUrl(it.poster_path), it.vote_average, it.vote_count
+                it.popularity, generatePosterImageUrl(it.poster_path), it.vote_average, it.vote_count
             )
         }
 
-    private fun generateImageUrl(url: String) = NetworkConfig.API_BASE_IMAGE + NetworkConfig.API_IMAGE_SIZE + url
+    private fun generatePosterImageUrl(url: String) =
+        NetworkConfig.API_BASE_IMAGE + NetworkConfig.API_POSTER_IMAGE_SIZE + url
+
+    private fun generateBackdropImageUrl(url: String) =
+        NetworkConfig.API_BASE_IMAGE + NetworkConfig.API_BACKDROP_IMAGE_SIZE + url
 }
