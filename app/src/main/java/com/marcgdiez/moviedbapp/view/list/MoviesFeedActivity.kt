@@ -1,10 +1,12 @@
 package com.marcgdiez.moviedbapp.view.list
 
 import android.os.Bundle
+import android.support.design.widget.AppBarLayout
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.WindowManager
+import com.marcgdiez.moviedbapp.Navigator
 import com.marcgdiez.moviedbapp.R
 import com.marcgdiez.moviedbapp.domain.bo.Movie
 import com.marcgdiez.moviedbapp.extensions.hide
@@ -32,7 +34,7 @@ class MoviesFeedActivity : AppCompatActivity(), MoviesFeedContract.View {
 
     private fun initViews() {
         with(recyclerView) {
-            adapter = MovieAdapter { presenter.onMovieClick(it) }
+            adapter = MovieAdapter(Navigator.NavigatorImpl(this@MoviesFeedActivity))
             val linearLayoutManager = LinearLayoutManager(this@MoviesFeedActivity)
             layoutManager = linearLayoutManager
             addOnScrollListener(object : RecyclerView.OnScrollListener() {

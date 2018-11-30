@@ -12,7 +12,6 @@ interface MoviesFeedContract {
 
     interface Presenter {
         fun onViewReady()
-        fun onMovieClick(it: Movie)
         fun onBottomReached()
     }
 }

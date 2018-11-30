@@ -2,19 +2,13 @@ package com.marcgdiez.moviedbapp.view.list
 
 import com.marcgdiez.moviedbapp.domain.GetMoviesUseCase
 import com.marcgdiez.moviedbapp.domain.bo.GetMoviesResponse
-import com.marcgdiez.moviedbapp.domain.bo.Movie
 
 class MoviesFeedPresenter(
         private val view: MoviesFeedContract.View
-        , private val getMoviesUseCase: GetMoviesUseCase
-) : MoviesFeedContract.Presenter {
+        , private val getMoviesUseCase: GetMoviesUseCase) : MoviesFeedContract.Presenter {
 
     private var page: Int = 1
     private var maxPages: Int = 1
-
-    override fun onMovieClick(it: Movie) {
-
-    }
 
     override fun onViewReady() {
         requestData()
