@@ -9,11 +9,35 @@
     card_view:cardCornerRadius="5dp"
     card_view:cardElevation="10dp">
 
-    <ImageView
-        android:id="@+id/moviePoster"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        tools:ignore="ContentDescription" />
+        android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/moviePoster"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            tools:ignore="ContentDescription" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/blackAlpha60" />
+
+        <TextView
+            android:id="@+id/rateAvg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:drawableEnd="@drawable/ic_baseline_star_rate_18px"
+            android:gravity="center_vertical"
+            android:shadowColor="@color/black"
+            android:shadowDx="1.5"
+            android:shadowDy="1.3"
+            android:shadowRadius="1.6"
+            android:textColor="@color/white" />
+    </RelativeLayout>
 </android.support.v7.widget.CardView>

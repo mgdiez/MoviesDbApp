@@ -26,6 +26,10 @@
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/activity_margin"
             android:gravity="center_vertical"
+            android:shadowColor="@color/black"
+            android:shadowDx="1.5"
+            android:shadowDy="1.3"
+            android:shadowRadius="1.6"
             android:textColor="@color/white"
             android:textStyle="bold"
             tools:text="Mr.Robot" />
@@ -44,6 +48,10 @@
             android:drawableEnd="@drawable/ic_baseline_star_rate_18px"
             android:drawableTint="@color/white"
             android:gravity="center_vertical"
+            android:shadowColor="@color/black"
+            android:shadowDx="1.5"
+            android:shadowDy="1.3"
+            android:shadowRadius="1.6"
             android:textColor="@color/white"
             tools:text="9.0" />
 

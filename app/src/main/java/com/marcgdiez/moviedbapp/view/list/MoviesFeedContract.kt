@@ -7,6 +7,8 @@ interface MoviesFeedContract {
         fun showError()
         fun showMovies(movies: List<Movie>)
         fun addMovies(movies: List<Movie>)
+        fun showLoading()
+        fun hideLoading()
     }
 
     interface Presenter {

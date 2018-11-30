@@ -1,16 +1,18 @@
 package com.marcgdiez.moviedbapp.view.list
 
-import com.marcgdiez.moviedbapp.domain.usecase.GetMoviesUseCase
 import com.marcgdiez.moviedbapp.domain.bo.GetMoviesResponse
+import com.marcgdiez.moviedbapp.domain.usecase.GetMoviesUseCase
 
 class MoviesFeedPresenter(
-        private val view: MoviesFeedContract.View
-        , private val getMoviesUseCase: GetMoviesUseCase) : MoviesFeedContract.Presenter {
+    private val view: MoviesFeedContract.View
+    , private val getMoviesUseCase: GetMoviesUseCase
+) : MoviesFeedContract.Presenter {
 
     private var page: Int = 1
     private var maxPages: Int = 1
 
     override fun onViewReady() {
+        view.showLoading()
         requestData()
     }
 
@@ -29,7 +31,10 @@ class MoviesFeedPresenter(
         maxPages = getMoviesResponse.totalPages
         if (movies.isNotEmpty()) {
             when (page) {
-                1 -> view.showMovies(movies)
+                1 -> {
+                    view.showMovies(movies)
+                    view.hideLoading()
+                }
                 else -> view.addMovies(movies)
             }
         }

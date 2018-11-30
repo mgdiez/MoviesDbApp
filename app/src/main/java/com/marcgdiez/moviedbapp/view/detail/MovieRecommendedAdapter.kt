@@ -40,6 +40,7 @@ class MovieRecommendedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemV
     fun bind(movie: Movie, navigator: Navigator) = with(itemView) {
         ViewCompat.setTransitionName(moviePoster, movie.id.toString())
         moviePoster.load(movie.imageUrl)
+        rateAvg.text = movie.voteAverage.toString()
         setOnClickListener { navigator.navigateToDetail(movie, moviePoster) }
     }
 }

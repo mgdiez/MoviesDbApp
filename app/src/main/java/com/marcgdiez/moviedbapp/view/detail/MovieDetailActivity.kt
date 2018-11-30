@@ -11,6 +11,7 @@ import com.marcgdiez.moviedbapp.Navigator
 import com.marcgdiez.moviedbapp.R
 import com.marcgdiez.moviedbapp.domain.bo.Movie
 import com.marcgdiez.moviedbapp.extensions.loadWithTranstion
+import com.marcgdiez.moviedbapp.extensions.show
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_movie_detail.*
 import kotlinx.android.synthetic.main.movie_detail_view.*
@@ -80,6 +81,7 @@ class MovieDetailActivity : AppCompatActivity(), MovieDetailContract.View {
     }
 
     override fun showRecommendations(movies: List<Movie>) {
+        recyclerView.show()
         val moviesAdapter = recyclerView.adapter as? MovieRecommendedAdapter
         moviesAdapter?.setMovies(movies)
     }
@@ -87,6 +89,14 @@ class MovieDetailActivity : AppCompatActivity(), MovieDetailContract.View {
     private fun initToolbar() {
         toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_24px)
         toolbar.setNavigationOnClickListener { onBackPressed() }
+    }
+
+    override fun hideLoading() {
+        progressView.hide()
+    }
+
+    override fun showLoading() {
+        progressView.show()
     }
 
     override fun onStop() {
