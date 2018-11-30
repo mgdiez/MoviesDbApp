@@ -56,3 +56,7 @@ dependencies {
     //Lottie
     implementation 'com.airbnb.android:lottie:2.7.0'
 }
+
+androidExtensions {
+    experimental = true
+}

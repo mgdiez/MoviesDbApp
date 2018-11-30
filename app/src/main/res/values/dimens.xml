@@ -5,4 +5,5 @@
     <dimen name="activity_margin">16dp</dimen>
     <dimen name="footer_adapter_movie_height">50dp</dimen>
     <dimen name="adapter_movie_height">150dp</dimen>
+    <dimen name="status_bar_heigth">24dp</dimen>
 </resources>

@@ -1,5 +1,9 @@
 package com.marcgdiez.moviedbapp.domain.bo
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Movie(
     val backdropPath: String,
     val firstAirDate: String,
@@ -14,4 +18,4 @@ data class Movie(
     val imageUrl: String,
     val voteAverage: Double,
     val nVotes: Int
-)
+) : Parcelable
