@@ -29,10 +29,7 @@ class MoviesFeedPresenter(
         maxPages = getMoviesResponse.totalPages
         if (movies.isNotEmpty()) {
             when (page) {
-                1 -> {
-                    view.showHeaderMovie(movies[0])
-                    view.showMovies(movies.subList(1, movies.size))
-                }
+                1 -> view.showMovies(movies)
                 else -> view.addMovies(movies)
             }
         }

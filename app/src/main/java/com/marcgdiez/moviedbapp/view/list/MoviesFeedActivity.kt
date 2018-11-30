@@ -59,13 +59,6 @@ class MoviesFeedActivity : AppCompatActivity(), MoviesFeedContract.View {
         moviesAdapter?.setMovies(movies)
     }
 
-    override fun showHeaderMovie(movie: Movie) {
-        headerImageView.load(movie.imageUrl)
-        headerImageView.show()
-        titleHeader.text = movie.name
-        ratingHeader.text = movie.voteAverage.toString()
-    }
-
     override fun addMovies(movies: List<Movie>) {
         val moviesAdapter = recyclerView.adapter as? MovieAdapter
         moviesAdapter?.addMovies(movies)
