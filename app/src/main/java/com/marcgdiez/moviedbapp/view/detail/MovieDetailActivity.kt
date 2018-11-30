@@ -49,6 +49,7 @@ class MovieDetailActivity : AppCompatActivity(), MovieDetailContract.View {
         with(recyclerView) {
             adapter = MovieRecommendedAdapter(Navigator.NavigatorImpl(this@MovieDetailActivity))
             layoutManager = LinearLayoutManager(this@MovieDetailActivity, LinearLayoutManager.HORIZONTAL, false)
+            setHasFixedSize(true)
         }
     }
 

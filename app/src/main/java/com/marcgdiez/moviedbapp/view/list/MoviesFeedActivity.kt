@@ -27,10 +27,6 @@ class MoviesFeedActivity : AppCompatActivity(), MoviesFeedContract.View {
         initStatusBar()
         initViews()
         AndroidInjection.inject(this)
-    }
-
-    override fun onResume() {
-        super.onResume()
         presenter.onViewReady()
     }
 
@@ -46,6 +42,7 @@ class MoviesFeedActivity : AppCompatActivity(), MoviesFeedContract.View {
                     super.onScrollStateChanged(recyclerView, newState)
                 }
             })
+            setHasFixedSize(true)
         }
     }
 
