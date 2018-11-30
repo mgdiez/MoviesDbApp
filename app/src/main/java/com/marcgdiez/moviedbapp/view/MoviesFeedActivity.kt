@@ -5,13 +5,13 @@ import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.marcgdiez.moviedbapp.R
 import com.marcgdiez.moviedbapp.domain.bo.Movie
 import com.marcgdiez.moviedbapp.extensions.load
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_movies_feed.*
-import kotlinx.android.synthetic.main.content_movies_feed.*
 import javax.inject.Inject
 
 
@@ -31,9 +31,16 @@ class MoviesFeedActivity : AppCompatActivity(), MoviesFeedContract.View {
 
     private fun initViews() {
         with(recyclerView) {
-            adapter = MovieAdapter { presenter.onMovieClick(it) }
-            layoutManager = LinearLayoutManager(this@MoviesFeedActivity)
-            isNestedScrollingEnabled = false
+            adapter = MovieAdapter{ presenter.onMovieClick(it) }
+            val linearLayoutManager = LinearLayoutManager(this@MoviesFeedActivity)
+            layoutManager = linearLayoutManager
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    if (linearLayoutManager.findLastCompletelyVisibleItemPosition() == linearLayoutManager.itemCount - 1)
+                        presenter.onBottomReached()
+                    super.onScrollStateChanged(recyclerView, newState)
+                }
+            })
         }
     }
 
@@ -54,6 +61,11 @@ class MoviesFeedActivity : AppCompatActivity(), MoviesFeedContract.View {
         headerImageView.load(movie.imageUrl)
         titleHeader.text = movie.name
         ratingHeader.text = movie.voteAverage.toString()
+    }
+
+    override fun addMovies(movies: List<Movie>) {
+        val moviesAdapter = recyclerView.adapter as? MovieAdapter
+        moviesAdapter?.addMovies(movies)
     }
 
     override fun showError() {

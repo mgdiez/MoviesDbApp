@@ -7,10 +7,12 @@ interface MoviesFeedContract {
         fun showError()
         fun showMovies(movies: List<Movie>)
         fun showHeaderMovie(movie: Movie)
+        fun addMovies(movies: List<Movie>)
     }
 
     interface Presenter {
         fun onViewReady()
         fun onMovieClick(it: Movie)
+        fun onBottomReached()
     }
 }

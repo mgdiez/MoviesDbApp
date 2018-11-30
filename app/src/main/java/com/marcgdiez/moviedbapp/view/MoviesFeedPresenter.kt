@@ -1,18 +1,45 @@
 package com.marcgdiez.moviedbapp.view
 
 import com.marcgdiez.moviedbapp.domain.GetMoviesUseCase
+import com.marcgdiez.moviedbapp.domain.bo.GetMoviesResponse
 import com.marcgdiez.moviedbapp.domain.bo.Movie
 
 class MoviesFeedPresenter(
-    private val view: MoviesFeedContract.View
-    , private val getMoviesUseCase: GetMoviesUseCase
+        private val view: MoviesFeedContract.View
+        , private val getMoviesUseCase: GetMoviesUseCase
 ) : MoviesFeedContract.Presenter {
+
+    private var page: Int = 1
+    private var maxPages: Int = 1
 
     override fun onMovieClick(it: Movie) {
 
     }
 
     override fun onViewReady() {
-        getMoviesUseCase.execute(1, { view.showMovies(it.moviesList) }, { view.showError() })
+        requestData()
+    }
+
+    private fun requestData() {
+        getMoviesUseCase.execute(page, { handleSuccess(it) }, { view.showError() })
+    }
+
+    private fun handleSuccess(getMoviesResponse: GetMoviesResponse) {
+        val movies = getMoviesResponse.moviesList
+        maxPages = getMoviesResponse.totalPages
+        if (movies.isNotEmpty()) {
+            when (page) {
+                1 -> {
+                    view.showHeaderMovie(movies[0])
+                    view.showMovies(movies.subList(1, movies.size))
+                }
+                else -> view.addMovies(movies)
+            }
+        }
+    }
+
+    override fun onBottomReached() {
+        page++
+        if (page < maxPages) requestData()
     }
 }

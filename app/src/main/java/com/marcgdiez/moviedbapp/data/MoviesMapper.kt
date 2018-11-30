@@ -8,7 +8,7 @@ class MoviesMapper {
     fun map(getMoviesResponseDto: GetMoviesResponseDto): GetMoviesResponse =
         GetMoviesResponse(
             moviesDtoToBo(getMoviesResponseDto),
-            getMoviesResponseDto.page
+            getMoviesResponseDto.total_pages
         )
 
     private fun moviesDtoToBo(getMoviesResponse: GetMoviesResponseDto): List<Movie> =
