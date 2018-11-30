@@ -2,7 +2,7 @@ package com.marcgdiez.moviedbapp.view.list.di
 
 import android.app.Activity
 import com.marcgdiez.moviedbapp.di.PerActivity
-import com.marcgdiez.moviedbapp.domain.GetMoviesUseCase
+import com.marcgdiez.moviedbapp.domain.usecase.GetMoviesUseCase
 import com.marcgdiez.moviedbapp.domain.MoviesRepository
 import com.marcgdiez.moviedbapp.view.list.MoviesFeedActivity
 import com.marcgdiez.moviedbapp.view.list.MoviesFeedContract

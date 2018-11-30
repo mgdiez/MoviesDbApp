@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.WindowManager
+import android.widget.Toast
 import com.marcgdiez.moviedbapp.R
 import com.marcgdiez.moviedbapp.domain.bo.Movie
 import com.marcgdiez.moviedbapp.extensions.loadWithTranstion
@@ -53,7 +54,7 @@ class MovieDetailActivity : AppCompatActivity(), MovieDetailContract.View {
         toolbar.title = movie.name
     }
 
-    override fun    showMovieDetails(movie: Movie) {
+    override fun showMovieDetails(movie: Movie) {
         titleShow.text = movie.name
         voteAvg.text = movie.voteAverage.toString()
         date.text = movie.firstAirDate
@@ -62,8 +63,21 @@ class MovieDetailActivity : AppCompatActivity(), MovieDetailContract.View {
         popularity.text = movie.popularity.toString()
     }
 
+    override fun hideRecommendations() {
+        Toast.makeText(this, "error", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun showRecommendations(moviesList: List<Movie>) {
+        Toast.makeText(this, "OK", Toast.LENGTH_SHORT).show()
+    }
+
     private fun initToolbar() {
         toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_24px)
         toolbar.setNavigationOnClickListener { onBackPressed() }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        presenter.onStop()
     }
 }

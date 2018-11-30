@@ -12,5 +12,6 @@ interface MoviesFeedContract {
     interface Presenter {
         fun onViewReady()
         fun onBottomReached()
+        fun onStop()
     }
 }

@@ -5,4 +5,6 @@ import io.reactivex.Single
 
 interface MoviesRepository {
     fun getMovies(page: Int): Single<GetMoviesResponse>
+
+    fun getRecomendations(id : Int): Single<GetMoviesResponse>
 }

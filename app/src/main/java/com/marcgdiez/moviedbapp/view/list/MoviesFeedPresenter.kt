@@ -1,6 +1,6 @@
 package com.marcgdiez.moviedbapp.view.list
 
-import com.marcgdiez.moviedbapp.domain.GetMoviesUseCase
+import com.marcgdiez.moviedbapp.domain.usecase.GetMoviesUseCase
 import com.marcgdiez.moviedbapp.domain.bo.GetMoviesResponse
 
 class MoviesFeedPresenter(
@@ -38,5 +38,9 @@ class MoviesFeedPresenter(
     override fun onBottomReached() {
         page++
         if (page < maxPages) requestData()
+    }
+
+    override fun onStop() {
+        getMoviesUseCase.clear()
     }
 }

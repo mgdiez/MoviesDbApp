@@ -48,6 +48,6 @@ class NetworkModule {
     fun providesMapper(): MoviesMapper = MoviesMapper()
 
     @Provides
-    fun googlePlacesRepository(moviesApi: MoviesApi, moviesMapper: MoviesMapper): MoviesRepository =
+    fun provideMoviesRepository(moviesApi: MoviesApi, moviesMapper: MoviesMapper): MoviesRepository =
         MoviesRepositoryImpl(moviesApi, moviesMapper)
 }

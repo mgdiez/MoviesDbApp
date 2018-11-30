@@ -68,4 +68,9 @@ class MoviesFeedActivity : AppCompatActivity(), MoviesFeedContract.View {
         errorLayout.show()
         recyclerView.hide()
     }
+
+    override fun onStop() {
+        super.onStop()
+        presenter.onStop()
+    }
 }
