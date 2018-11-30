@@ -21,7 +21,13 @@ class MoviesFeedPresenter(
     }
 
     private fun requestData() {
-        getMoviesUseCase.execute(page, { handleSuccess(it) }, { view.showError() })
+        getMoviesUseCase.execute(page, ::handleSuccess, ::handleError)
+    }
+
+    private fun handleError(throwable: Throwable) {
+        if (page == 1) {
+            view.showError()
+        }
     }
 
     private fun handleSuccess(getMoviesResponse: GetMoviesResponse) {

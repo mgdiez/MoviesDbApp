@@ -1,17 +1,18 @@
 package com.marcgdiez.moviedbapp.view
 
-import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.View
+import android.view.WindowManager
 import com.marcgdiez.moviedbapp.R
 import com.marcgdiez.moviedbapp.domain.bo.Movie
+import com.marcgdiez.moviedbapp.extensions.hide
 import com.marcgdiez.moviedbapp.extensions.load
+import com.marcgdiez.moviedbapp.extensions.show
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_movies_feed.*
+import kotlinx.android.synthetic.main.error_layout.*
 import javax.inject.Inject
 
 
@@ -31,7 +32,7 @@ class MoviesFeedActivity : AppCompatActivity(), MoviesFeedContract.View {
 
     private fun initViews() {
         with(recyclerView) {
-            adapter = MovieAdapter{ presenter.onMovieClick(it) }
+            adapter = MovieAdapter { presenter.onMovieClick(it) }
             val linearLayoutManager = LinearLayoutManager(this@MoviesFeedActivity)
             layoutManager = linearLayoutManager
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -45,20 +46,20 @@ class MoviesFeedActivity : AppCompatActivity(), MoviesFeedContract.View {
     }
 
     private fun initStatusBar() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
-                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-            window.statusBarColor = Color.TRANSPARENT
-        }
+        window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
     }
 
     override fun showMovies(movies: List<Movie>) {
+        recyclerView.show()
+        errorLayout.hide()
+
         val moviesAdapter = recyclerView.adapter as? MovieAdapter
         moviesAdapter?.setMovies(movies)
     }
 
     override fun showHeaderMovie(movie: Movie) {
         headerImageView.load(movie.imageUrl)
+        headerImageView.show()
         titleHeader.text = movie.name
         ratingHeader.text = movie.voteAverage.toString()
     }
@@ -69,5 +70,7 @@ class MoviesFeedActivity : AppCompatActivity(), MoviesFeedContract.View {
     }
 
     override fun showError() {
+        errorLayout.show()
+        recyclerView.hide()
     }
 }

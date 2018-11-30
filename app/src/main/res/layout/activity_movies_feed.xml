@@ -1,88 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                 xmlns:tools="http://schemas.android.com/tools"
-                                                 android:layout_width="match_parent"
-                                                 android:layout_height="match_parent"
-                                                 android:layout_marginTop="-32dp"
-                                                 android:fitsSystemWindows="true"
-                                                 tools:context=".view.MoviesFeedActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:fitsSystemWindows="true"
+    tools:context=".view.MoviesFeedActivity">
 
     <android.support.design.widget.AppBarLayout
-            android:id="@+id/app_bar"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/app_bar_height"
-            android:fitsSystemWindows="true"
-            android:theme="@style/AppTheme.AppBarOverlay">
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.design.widget.CollapsingToolbarLayout
-                android:id="@+id/toolbar_layout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fitsSystemWindows="true"
-                app:contentScrim="?attr/colorPrimary"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:toolbarId="@+id/toolbar">
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:toolbarId="@+id/toolbar">
 
             <RelativeLayout
-                    android:layout_marginBottom="30dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:animateLayoutChanges="true">
 
                 <ImageView
-                        android:id="@+id/headerImageView"
-                        android:layout_width="match_parent"
+                    android:id="@+id/headerImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/app_bar_header"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone"
+                    app:layout_collapseMode="none"
+                    tools:ignore="ContentDescription" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/footer_adapter_movie_height"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/blackAlpha60">
+
+                    <TextView
+                        android:id="@+id/titleHeader"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        app:layout_collapseMode="none"
-                        tools:ignore="ContentDescription"/>
+                        android:layout_marginStart="@dimen/activity_margin"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        tools:text="Mr.Robot" />
 
-                <LinearLayout android:layout_width="match_parent"
-                              android:layout_height="50dp"
-                              android:layout_alignParentBottom="true"
-                              android:background="@color/blackAlpha60">
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
 
-                    <TextView android:id="@+id/titleHeader"
-                              android:layout_width="wrap_content"
-                              android:layout_height="match_parent"
-                              android:gravity="center_vertical"
-                              android:layout_marginStart="16dp"
-                              android:textStyle="bold"
-                              tools:text="Mr.Robot"
-                              android:textColor="@color/white"/>
-
-                    <Space android:layout_width="0dp"
-                           android:layout_height="wrap_content"
-                           android:layout_weight="1"/>
-
-                    <TextView android:id="@+id/ratingHeader"
-                              android:layout_width="wrap_content"
-                              android:layout_gravity="center_vertical"
-                              android:gravity="center_vertical"
-                              android:layout_height="wrap_content"
-                              android:layout_marginEnd="16dp"
-                              android:textColor="@color/white"
-                              android:drawableTint="@color/white"
-                              android:drawableEnd="@drawable/ic_baseline_star_rate_18px"
-                              tools:text="9.0"/>
+                    <TextView
+                        android:id="@+id/ratingHeader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="@dimen/activity_margin"
+                        android:drawableEnd="@drawable/ic_baseline_star_rate_18px"
+                        android:drawableTint="@color/white"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/white"
+                        tools:text="9.0" />
 
                 </LinearLayout>
             </RelativeLayout>
 
             <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="64dp"
-                    app:layout_collapseMode="pin"
-                    app:popupTheme="@style/AppTheme.PopupOverlay"/>
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:layout_height="match_parent"/>
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <include layout="@layout/error_layout" />
 
 </android.support.design.widget.CoordinatorLayout>
