@@ -2,6 +2,7 @@ package com.marcgdiez.moviedbapp.di
 
 import android.content.Context
 import com.marcgdiez.moviedbapp.MoviesDbApp
+import com.marcgdiez.moviedbapp.view.detail.di.MoviesDetailComponent
 import com.marcgdiez.moviedbapp.view.list.di.MoviesComponent
 import dagger.Module
 import dagger.Provides
@@ -11,9 +12,10 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Named
 
 @Module(
-    subcomponents = [
-        (MoviesComponent::class)
-    ]
+        subcomponents = [
+            (MoviesComponent::class),
+            (MoviesDetailComponent::class)
+        ]
 )
 class AppModule {
 

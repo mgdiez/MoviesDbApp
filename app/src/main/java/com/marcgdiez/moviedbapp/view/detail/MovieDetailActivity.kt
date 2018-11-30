@@ -8,10 +8,16 @@ import android.view.WindowManager
 import com.marcgdiez.moviedbapp.R
 import com.marcgdiez.moviedbapp.domain.bo.Movie
 import com.marcgdiez.moviedbapp.extensions.loadWithTranstion
+import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_movie_detail.*
+import kotlinx.android.synthetic.main.movie_detail_view.*
+import javax.inject.Inject
 
 
 class MovieDetailActivity : AppCompatActivity(), MovieDetailContract.View {
+
+    @Inject
+    lateinit var presenter: MovieDetailContract.Presenter
 
     companion object {
         fun getCallingIntent(context: Context, movie: Movie): Intent {
@@ -26,8 +32,8 @@ class MovieDetailActivity : AppCompatActivity(), MovieDetailContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_detail)
+        AndroidInjection.inject(this)
         window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-
         supportPostponeEnterTransition()
 
         val extras = intent.extras
@@ -37,15 +43,23 @@ class MovieDetailActivity : AppCompatActivity(), MovieDetailContract.View {
             val imageTransitionName = movie.id.toString()
             imageView.transitionName = imageTransitionName
             imageView.loadWithTranstion(movie.backdropPath, this@MovieDetailActivity)
-            toolbar.title = movie.name
+            presenter.onViewReady(movie)
         }
 
         initToolbar()
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
+    override fun showTitleShow(movie: Movie) {
+        toolbar.title = movie.name
+    }
+
+    override fun    showMovieDetails(movie: Movie) {
+        titleShow.text = movie.name
+        voteAvg.text = movie.voteAverage.toString()
+        date.text = movie.firstAirDate
+        overview.text = movie.overview
+        voteNum.text = movie.nVotes.toString()
+        popularity.text = movie.popularity.toString()
     }
 
     private fun initToolbar() {
