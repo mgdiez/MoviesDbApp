@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.WindowManager
 import android.widget.Toast
+import com.marcgdiez.moviedbapp.Navigator
 import com.marcgdiez.moviedbapp.R
 import com.marcgdiez.moviedbapp.domain.bo.Movie
 import com.marcgdiez.moviedbapp.extensions.loadWithTranstion
@@ -45,7 +46,7 @@ class MovieDetailActivity : AppCompatActivity(), MovieDetailContract.View {
 
     private fun initRecyclerView() {
         with(recyclerView) {
-            adapter = MovieRecommendedAdapter()
+            adapter = MovieRecommendedAdapter(Navigator.NavigatorImpl(this@MovieDetailActivity))
             layoutManager = LinearLayoutManager(this@MovieDetailActivity, LinearLayoutManager.HORIZONTAL, false)
         }
     }
