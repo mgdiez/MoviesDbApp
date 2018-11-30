@@ -2,8 +2,8 @@ package com.marcgdiez.moviedbapp.view.list.di
 
 import android.app.Activity
 import com.marcgdiez.moviedbapp.di.PerActivity
-import com.marcgdiez.moviedbapp.domain.usecase.GetMoviesUseCase
 import com.marcgdiez.moviedbapp.domain.MoviesRepository
+import com.marcgdiez.moviedbapp.domain.usecase.GetMoviesUseCase
 import com.marcgdiez.moviedbapp.view.list.MoviesFeedActivity
 import com.marcgdiez.moviedbapp.view.list.MoviesFeedContract
 import com.marcgdiez.moviedbapp.view.list.MoviesFeedPresenter
@@ -30,9 +30,9 @@ abstract class MoviesModule {
         @PerActivity
         @JvmStatic
         internal fun provideGetMoviesUseCase(
-            moviesRepository: MoviesRepository,
-            @Named("observeOn") observeOn: Scheduler,
-            @Named("subscribeOn") subscribeOn: Scheduler
+                moviesRepository: MoviesRepository,
+                @Named("observeOn") observeOn: Scheduler,
+                @Named("subscribeOn") subscribeOn: Scheduler
         ): GetMoviesUseCase = GetMoviesUseCase(moviesRepository, observeOn, subscribeOn)
 
         @Provides

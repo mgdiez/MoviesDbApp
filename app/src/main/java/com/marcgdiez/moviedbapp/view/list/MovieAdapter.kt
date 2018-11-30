@@ -12,7 +12,7 @@ import com.marcgdiez.moviedbapp.extensions.load
 import kotlinx.android.synthetic.main.adapter_movie.view.*
 
 class MovieAdapter(val navigator: Navigator) :
-    RecyclerView.Adapter<ItemViewHolder>() {
+        RecyclerView.Adapter<MovieViewHolder>() {
 
     private var movies: MutableList<Movie> = ArrayList()
 
@@ -20,8 +20,8 @@ class MovieAdapter(val navigator: Navigator) :
         setHasStableIds(true)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder =
-        ItemViewHolder(parent.inflate(R.layout.adapter_movie))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder =
+            MovieViewHolder(parent.inflate(R.layout.adapter_movie))
 
     override fun getItemId(position: Int): Long = position.toLong()
 
@@ -38,12 +38,12 @@ class MovieAdapter(val navigator: Navigator) :
         notifyItemRangeInserted(previousSize, this.movies.size)
     }
 
-    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         holder.bind(movies[position], navigator)
     }
 }
 
-class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bind(movie: Movie, navigator: Navigator) = with(itemView) {
         ViewCompat.setTransitionName(backgroundImage, movie.id.toString())
         backgroundImage.load(movie.backdropPath)

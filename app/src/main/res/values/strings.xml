@@ -2,4 +2,5 @@
     <string name="app_name">MovieDBApp</string>
     <string name="action_settings">Settings</string>
     <string name="ooops_something_wen_t_wrong">Ooops! Something wen\'t wrong</string>
+    <string name="also_like">You may also like…</string>
 </resources>

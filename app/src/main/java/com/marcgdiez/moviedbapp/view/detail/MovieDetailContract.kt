@@ -7,7 +7,7 @@ interface MovieDetailContract {
         fun showMovieDetails(movie: Movie)
         fun showTitleShow(movie: Movie)
         fun hideRecommendations()
-        fun showRecommendations(moviesList: List<Movie>)
+        fun showRecommendations(movies: List<Movie>)
     }
 
     interface Presenter {

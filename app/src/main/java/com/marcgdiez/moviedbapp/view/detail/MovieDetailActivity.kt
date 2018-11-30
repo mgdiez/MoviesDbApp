@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.view.WindowManager
 import android.widget.Toast
 import com.marcgdiez.moviedbapp.R
@@ -37,8 +38,20 @@ class MovieDetailActivity : AppCompatActivity(), MovieDetailContract.View {
         window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         supportPostponeEnterTransition()
 
-        val extras = intent.extras
+        initRecyclerView()
+        initToolbar()
+        getExtras()
+    }
 
+    private fun initRecyclerView() {
+        with(recyclerView) {
+            adapter = MovieRecommendedAdapter()
+            layoutManager = LinearLayoutManager(this@MovieDetailActivity, LinearLayoutManager.HORIZONTAL, false)
+        }
+    }
+
+    private fun getExtras() {
+        val extras = intent.extras
         extras?.apply {
             val movie = getParcelable(ARG_MOVIE) as Movie
             val imageTransitionName = movie.id.toString()
@@ -46,8 +59,6 @@ class MovieDetailActivity : AppCompatActivity(), MovieDetailContract.View {
             imageView.loadWithTranstion(movie.backdropPath, this@MovieDetailActivity)
             presenter.onViewReady(movie)
         }
-
-        initToolbar()
     }
 
     override fun showTitleShow(movie: Movie) {
@@ -67,8 +78,9 @@ class MovieDetailActivity : AppCompatActivity(), MovieDetailContract.View {
         Toast.makeText(this, "error", Toast.LENGTH_SHORT).show()
     }
 
-    override fun showRecommendations(moviesList: List<Movie>) {
-        Toast.makeText(this, "OK", Toast.LENGTH_SHORT).show()
+    override fun showRecommendations(movies: List<Movie>) {
+        val moviesAdapter = recyclerView.adapter as? MovieRecommendedAdapter
+        moviesAdapter?.setMovies(movies)
     }
 
     private fun initToolbar() {
