@@ -2,7 +2,7 @@ package com.marcgdiez.moviedbapp.di
 
 import android.content.Context
 import com.marcgdiez.moviedbapp.MoviesDbApp
-import com.marcgdiez.moviedbapp.view.di.MoviesComponent
+import com.marcgdiez.moviedbapp.view.list.di.MoviesComponent
 import dagger.Module
 import dagger.Provides
 import io.reactivex.Scheduler

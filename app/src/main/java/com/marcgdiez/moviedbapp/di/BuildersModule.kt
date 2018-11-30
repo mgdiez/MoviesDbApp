@@ -1,8 +1,8 @@
 package com.marcgdiez.moviedbapp.di
 
 import android.app.Activity
-import com.marcgdiez.moviedbapp.view.MoviesFeedActivity
-import com.marcgdiez.moviedbapp.view.di.MoviesComponent
+import com.marcgdiez.moviedbapp.view.list.MoviesFeedActivity
+import com.marcgdiez.moviedbapp.view.list.di.MoviesComponent
 import dagger.Binds
 import dagger.Module
 import dagger.android.ActivityKey
