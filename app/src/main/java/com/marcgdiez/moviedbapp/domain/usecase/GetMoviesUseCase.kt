@@ -7,9 +7,9 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.disposables.Disposables
 
 class GetMoviesUseCase(
-        private val moviesRepository: MoviesRepository,
-        private val observeOn: Scheduler,
-        private val subscribeOn: Scheduler
+    private val moviesRepository: MoviesRepository,
+    private val observeOn: Scheduler,
+    private val subscribeOn: Scheduler
 ) {
 
     private var subscription: Disposable = Disposables.empty()

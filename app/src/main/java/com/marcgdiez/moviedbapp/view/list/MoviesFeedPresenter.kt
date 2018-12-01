@@ -8,8 +8,8 @@ class MoviesFeedPresenter(
     , private val getMoviesUseCase: GetMoviesUseCase
 ) : MoviesFeedContract.Presenter {
 
-    private var page: Int = 1
-    private var maxPages: Int = 1
+    internal var page: Int = 1
+    internal var maxPages: Int = 1
 
     override fun onViewReady() {
         view.showLoading()
@@ -18,11 +18,11 @@ class MoviesFeedPresenter(
 
     private fun requestData() = getMoviesUseCase.execute(page, ::handleSuccess, ::handleError)
 
-    private fun handleError(throwable: Throwable) {
+    internal fun handleError(throwable: Throwable) {
         if (page == 1) view.showError()
     }
 
-    private fun handleSuccess(getMoviesResponse: GetMoviesResponse) {
+    internal fun handleSuccess(getMoviesResponse: GetMoviesResponse) {
         val movies = getMoviesResponse.moviesList
         maxPages = getMoviesResponse.totalPages
         if (movies.isNotEmpty()) {
@@ -33,11 +33,13 @@ class MoviesFeedPresenter(
                 }
                 else -> view.addMovies(movies)
             }
+        } else {
+            view.hideLoading()
         }
     }
 
     override fun onBottomReached() {
-        if (++page < maxPages) requestData()
+        if (++page <= maxPages) requestData()
     }
 
     override fun onRetryClick() {

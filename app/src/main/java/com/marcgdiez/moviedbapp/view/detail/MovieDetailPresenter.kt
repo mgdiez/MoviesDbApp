@@ -16,13 +16,13 @@ class MovieDetailPresenter(
         getRecommendationsUseCase.execute(movie.id, ::handleSuccess, ::handleError)
     }
 
-    private fun handleSuccess(getMoviesResponse: GetMoviesResponse) {
+    internal fun handleSuccess(getMoviesResponse: GetMoviesResponse) {
         view.hideLoading()
         val moviesList = getMoviesResponse.moviesList
         if (moviesList.isNotEmpty()) view.showRecommendations(moviesList) else view.hideRecommendations()
     }
 
-    private fun handleError(throwable: Throwable) {
+    internal fun handleError(throwable: Throwable) {
         view.hideLoading()
         view.hideRecommendations()
     }
