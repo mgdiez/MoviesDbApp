@@ -15,7 +15,7 @@ class GetRecommendationsUseCase(
     private var subscription: Disposable = Disposables.empty()
 
     fun execute(id: Int, onComplete: (GetMoviesResponse) -> Unit, onError: (Throwable) -> Unit) {
-        subscription = moviesRepository.getRecomendations(id)
+        subscription = moviesRepository.getRecommendations(id)
                 .subscribeOn(subscribeOn)
                 .observeOn(observeOn)
                 .subscribe(onComplete, onError)

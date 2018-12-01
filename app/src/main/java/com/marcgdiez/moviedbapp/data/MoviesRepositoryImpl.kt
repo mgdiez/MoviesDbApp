@@ -7,8 +7,8 @@ import io.reactivex.Single
 class MoviesRepositoryImpl(private val moviesApi: MoviesApi, private val moviesMapper: MoviesMapper) :
         MoviesRepository {
 
-    override fun getRecomendations(id: Int): Single<GetMoviesResponse> =
-            moviesApi.getMoviesRecomendations(id, NetworkConfig.API_KEY, NetworkConfig.API_LAN).map { moviesMapper.map(it) }
+    override fun getRecommendations(id: Int): Single<GetMoviesResponse> =
+            moviesApi.getMoviesRecommendations(id, NetworkConfig.API_KEY, NetworkConfig.API_LAN).map { moviesMapper.map(it) }
 
     override fun getMovies(page: Int): Single<GetMoviesResponse> =
             moviesApi.getMoviesList(NetworkConfig.API_KEY, NetworkConfig.API_LAN, page).map { moviesMapper.map(it) }

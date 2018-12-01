@@ -7,7 +7,7 @@ import com.squareup.picasso.Picasso
 
 fun ImageView.load(url: String) = Picasso.get().load(url).into(this)
 
-fun ImageView.loadWithTranstion(url: String, activity: AppCompatActivity) {
+fun ImageView.loadWithTransition(url: String, activity: AppCompatActivity) =
     Picasso.get()
             .load(url)
             .noFade()
@@ -20,4 +20,3 @@ fun ImageView.loadWithTranstion(url: String, activity: AppCompatActivity) {
                     activity.supportStartPostponedEnterTransition()
                 }
             })
-}

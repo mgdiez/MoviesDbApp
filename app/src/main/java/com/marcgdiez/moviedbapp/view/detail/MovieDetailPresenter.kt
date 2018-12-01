@@ -26,7 +26,5 @@ class MovieDetailPresenter(
         view.hideRecommendations()
     }
 
-    override fun onStop() {
-        getRecommendationsUseCase.clear()
-    }
+    override fun onStop() = getRecommendationsUseCase.clear()
 }

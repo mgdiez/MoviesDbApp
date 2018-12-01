@@ -11,7 +11,7 @@ import com.marcgdiez.moviedbapp.extensions.inflate
 import com.marcgdiez.moviedbapp.extensions.load
 import kotlinx.android.synthetic.main.adapter_movie.view.*
 
-class MovieAdapter(val navigator: Navigator) :
+class MovieAdapter(private val navigator: Navigator) :
         RecyclerView.Adapter<MovieViewHolder>() {
 
     private var movies: MutableList<Movie> = ArrayList()
@@ -38,9 +38,9 @@ class MovieAdapter(val navigator: Navigator) :
         notifyItemRangeInserted(previousSize, this.movies.size)
     }
 
-    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) =
         holder.bind(movies[position], navigator)
-    }
+
 }
 
 class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

@@ -16,7 +16,7 @@ interface MoviesApi {
     ): Single<GetMoviesResponseDto>
 
     @GET("tv/{tv_id}/similar")
-    fun getMoviesRecomendations(
+    fun getMoviesRecommendations(
             @Path("tv_id") id: Int,
             @Query("api_key") api: String,
             @Query("language") language: String
