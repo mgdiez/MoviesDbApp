@@ -19,6 +19,7 @@
         app:lottie_scale="2" />
 
     <TextView
+        android:id="@+id/textError"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/noInternetView"
@@ -26,5 +27,16 @@
         android:text="@string/ooops_something_wen_t_wrong"
         android:textColor="@color/white"
         android:textSize="20sp" />
+
+    <ImageButton
+        android:id="@+id/retryBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textError"
+        android:layout_marginTop="@dimen/activity_margin"
+        android:layout_centerInParent="true"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_baseline_replay_24px"
+        tools:ignore="ContentDescription" />
 
 </RelativeLayout>

@@ -10,10 +10,11 @@ import com.marcgdiez.moviedbapp.Navigator
 import com.marcgdiez.moviedbapp.R
 import com.marcgdiez.moviedbapp.domain.bo.Movie
 import com.marcgdiez.moviedbapp.extensions.hide
-import com.marcgdiez.moviedbapp.extensions.loadWithTranstion
+import com.marcgdiez.moviedbapp.extensions.loadWithTransition
 import com.marcgdiez.moviedbapp.extensions.show
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_movie_detail.*
+import kotlinx.android.synthetic.main.loading_layout.*
 import kotlinx.android.synthetic.main.movie_detail_view.*
 import javax.inject.Inject
 
@@ -59,7 +60,7 @@ class MovieDetailActivity : AppCompatActivity(), MovieDetailContract.View {
             val movie = getParcelable(ARG_MOVIE) as Movie
             val imageTransitionName = movie.id.toString()
             imageView.transitionName = imageTransitionName
-            imageView.loadWithTranstion(movie.backdropPath, this@MovieDetailActivity)
+            imageView.loadWithTransition(movie.backdropPath, this@MovieDetailActivity)
             presenter.onViewReady(movie)
         }
     }

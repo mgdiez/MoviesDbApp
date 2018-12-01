@@ -9,11 +9,13 @@ interface MoviesFeedContract {
         fun addMovies(movies: List<Movie>)
         fun showLoading()
         fun hideLoading()
+        fun hideError()
     }
 
     interface Presenter {
         fun onViewReady()
         fun onBottomReached()
         fun onStop()
+        fun onRetryClick()
     }
 }

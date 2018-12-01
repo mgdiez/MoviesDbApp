@@ -16,14 +16,10 @@ class MoviesFeedPresenter(
         requestData()
     }
 
-    private fun requestData() {
-        getMoviesUseCase.execute(page, ::handleSuccess, ::handleError)
-    }
+    private fun requestData() = getMoviesUseCase.execute(page, ::handleSuccess, ::handleError)
 
     private fun handleError(throwable: Throwable) {
-        if (page == 1) {
-            view.showError()
-        }
+        if (page == 1) view.showError()
     }
 
     private fun handleSuccess(getMoviesResponse: GetMoviesResponse) {
@@ -41,11 +37,14 @@ class MoviesFeedPresenter(
     }
 
     override fun onBottomReached() {
-        page++
-        if (page < maxPages) requestData()
+        if (++page < maxPages) requestData()
     }
 
-    override fun onStop() {
-        getMoviesUseCase.clear()
+    override fun onRetryClick() {
+        view.hideError()
+        view.showLoading()
+        requestData()
     }
+
+    override fun onStop() = getMoviesUseCase.clear()
 }
