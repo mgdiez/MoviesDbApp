@@ -5,8 +5,8 @@ import com.marcgdiez.moviedbapp.domain.bo.Movie
 import com.marcgdiez.moviedbapp.domain.usecase.GetRecommendationsUseCase
 
 class MovieDetailPresenter(
-    private val view: MovieDetailContract.View,
-    private val getRecommendationsUseCase: GetRecommendationsUseCase
+        private val view: MovieDetailContract.View,
+        private val getRecommendationsUseCase: GetRecommendationsUseCase
 ) : MovieDetailContract.Presenter {
 
     override fun onViewReady(movie: Movie) {
@@ -18,7 +18,8 @@ class MovieDetailPresenter(
 
     private fun handleSuccess(getMoviesResponse: GetMoviesResponse) {
         view.hideLoading()
-        view.showRecommendations(getMoviesResponse.moviesList)
+        val moviesList = getMoviesResponse.moviesList
+        if (moviesList.isNotEmpty()) view.showRecommendations(moviesList) else view.hideRecommendations()
     }
 
     private fun handleError(throwable: Throwable) {
