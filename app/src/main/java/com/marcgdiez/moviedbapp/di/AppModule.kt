@@ -12,12 +12,12 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Named
 
 @Module(
-        subcomponents = [
-            (MoviesComponent::class),
-            (MoviesDetailComponent::class)
-        ]
+    subcomponents = [
+        (MoviesComponent::class),
+        (MoviesDetailComponent::class)
+    ]
 )
-class AppModule {
+open class AppModule {
 
     @Provides
     fun context(application: MoviesDbApp): Context = application.applicationContext
