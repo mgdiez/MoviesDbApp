@@ -1,9 +1,9 @@
 package com.marcgdiez.moviedbapp
 
 import android.app.Activity
-import android.support.v4.app.ActivityOptionsCompat
-import android.support.v4.view.ViewCompat
 import android.widget.ImageView
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.view.ViewCompat
 import com.marcgdiez.moviedbapp.domain.bo.Movie
 import com.marcgdiez.moviedbapp.view.detail.MovieDetailActivity
 
