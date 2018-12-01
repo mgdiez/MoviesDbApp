@@ -1,4 +1,4 @@
-# MoviesDbApp   <img src="https://i.imgur.com/Ma3z2J6.png" width="50" alt="logo" align="center">
+# MoviesDbApp <img src="https://i.imgur.com/Ma3z2J6.png" width="50" alt="logo" align="center">
 
 ## App screenshots
 
@@ -45,6 +45,11 @@ Either when requesting the feed of movies or requesting recommendations for a ce
 * Lottie https://airbnb.design/lottie/
 * Retrofit2 https://square.github.io/retrofit/
 * OkHttp3 https://github.com/square/okhttp
+* Mockito https://github.com/nhaarman/mockito-kotlin
+
+## TODOs
+
+* Instrumentation Testing
 
 ## Support & contact
 
