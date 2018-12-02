@@ -20,6 +20,10 @@ interface AppComponent {
         @BindsInstance
         fun application(application: MoviesDbApp): Builder
 
+        fun appModule(appModule: AppModule): Builder
+
+        fun networkModule(networkModule: NetworkModule): Builder
+
         fun build(): AppComponent
     }
 
