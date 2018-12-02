@@ -52,6 +52,7 @@ Either when requesting the feed of movies or requesting recommendations for a ce
 ## TODOs
 
 * Instrumentation Testing
+* Cache / database
 
 ## Support & contact
 
