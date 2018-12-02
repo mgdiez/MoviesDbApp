@@ -46,6 +46,8 @@ Either when requesting the feed of movies or requesting recommendations for a ce
 * Retrofit2 https://square.github.io/retrofit/
 * OkHttp3 https://github.com/square/okhttp
 * Mockito https://github.com/nhaarman/mockito-kotlin
+* DaggerMock https://github.com/fabioCollini/DaggerMock
+* Barista https://github.com/SchibstedSpain/Barista
 
 ## TODOs
 
