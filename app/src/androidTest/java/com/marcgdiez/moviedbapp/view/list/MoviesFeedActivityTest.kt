@@ -10,6 +10,7 @@ import com.marcgdiez.moviedbapp.domain.bo.Movie
 import com.nhaarman.mockito_kotlin.given
 import com.nhaarman.mockito_kotlin.mock
 import com.schibsted.spain.barista.assertion.BaristaRecyclerViewAssertions.assertRecyclerViewItemCount
+import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertNotDisplayed
 import com.schibsted.spain.barista.interaction.BaristaSleepInteractions.sleep
 import com.schibsted.spain.barista.rule.BaristaRule
 import io.reactivex.Single
@@ -44,7 +45,10 @@ class MoviesFeedActivityTest {
         activityRule.launchActivity()
 
         sleep(1000)
+
         assertRecyclerViewItemCount(R.id.recyclerView, 20)
+        assertNotDisplayed(R.id.errorLayout)
+        assertNotDisplayed(R.id.progressView)
     }
 
     private fun provideMovie(): Movie = Movie(
